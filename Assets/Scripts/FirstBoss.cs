@@ -16,6 +16,8 @@ public class FirstBoss : MonoBehaviour
     public Transform centerPoint;
     public float detectRange = 0.5f;
     public LayerMask playerLayer;
+    public Transform centerAirPoint;
+    public float detectAirRange = 0.5f;
 
     public bool playerInRange;
     public Transform playerPos;
@@ -35,17 +37,31 @@ public class FirstBoss : MonoBehaviour
     void Update()
     {
         
-
         healthBar.value = currentHealth;
-        //Detect player collision
+
+        //Detect player collision on ground
         Collider2D[] playerDetected = Physics2D.OverlapCircleAll(centerPoint.position, detectRange, playerLayer);
                 
-        if (playerDetected.Length > 0)
+        /*if (playerDetected.Length > 0)
         {
             playerInRange = true;
             bossAnim.SetBool("playerInRange", true);
             bossAnim.SetTrigger("attack");
         } else
+        {
+            playerInRange = false;
+            bossAnim.SetBool("playerInRange", false);
+        }*/
+
+        //Detect player collision on ground
+        Collider2D[] playerAirDetected = Physics2D.OverlapCircleAll(centerPoint.position, detectRange, playerLayer);
+        if (playerAirDetected.Length > 0 || playerDetected.Length > 0)
+        {
+            playerInRange = true;
+            bossAnim.SetBool("playerInRange", true);
+            bossAnim.SetTrigger("attack");
+        }
+        else
         {
             playerInRange = false;
             bossAnim.SetBool("playerInRange", false);
@@ -109,5 +125,6 @@ public class FirstBoss : MonoBehaviour
         if (centerPoint == null) return;
 
         Gizmos.DrawWireSphere(centerPoint.position, detectRange);
+        Gizmos.DrawWireSphere(centerAirPoint.position, detectAirRange);
     } 
 }

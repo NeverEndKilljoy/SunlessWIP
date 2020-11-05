@@ -10,6 +10,10 @@ public class DashBehavoir : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if (animator.GetBool("playerInRange"))
+        {
+            animator.SetTrigger("attack");
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
