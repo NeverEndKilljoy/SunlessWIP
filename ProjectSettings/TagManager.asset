@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - EnableDoubleJump
+  - BossTrigger
   layers:
   - Default
   - TransparentFX
