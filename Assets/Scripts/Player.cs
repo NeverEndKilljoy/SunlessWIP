@@ -467,7 +467,7 @@ public class Player : MonoBehaviour
         //Damage enemies
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<FirstBoss>().TakeDamage(attackDamage); //Solo está atacando al boss
+            enemy.GetComponent<DamageEnemy>().TakeDamage(attackDamage); //Solo está atacando al boss
         }
     }
 

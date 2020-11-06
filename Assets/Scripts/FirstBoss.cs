@@ -57,6 +57,7 @@ public class FirstBoss : MonoBehaviour
         Collider2D[] playerAirDetected = Physics2D.OverlapCircleAll(centerPoint.position, detectRange, playerLayer);
         if (playerAirDetected.Length > 0 || playerDetected.Length > 0)
         {
+
             playerInRange = true;
             bossAnim.SetBool("playerInRange", true);
             bossAnim.SetTrigger("attack");
